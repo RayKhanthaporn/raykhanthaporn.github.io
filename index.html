@@ -1,189 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ray Rewat Khanthaporn — AI Data Analytics</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ray Khanthaporn — AI Data Analytics</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f7fb;
-      color: #1a1a1a;
-      line-height: 1.6;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f7fb;
+  color: #1a1a1a;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-      background: #fff;
-    }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  background: white;
+}
 
-    h1 {
-      margin-bottom: 5px;
-    }
+h1 { margin-bottom: 5px; }
+h2 {
+  margin-top: 2rem;
+  border-bottom: 2px solid #3765F6;
+  padding-bottom: 5px;
+}
 
-    h2 {
-      margin-top: 2rem;
-      border-bottom: 2px solid #3765F6;
-      padding-bottom: 5px;
-    }
+.tag {
+  display: inline-block;
+  background: #eef2ff;
+  color: #3765F6;
+  padding: 4px 8px;
+  margin: 3px;
+  border-radius: 5px;
+  font-size: 12px;
+}
 
-    .tag {
-      display: inline-block;
-      background: #eef2ff;
-      color: #3765F6;
-      padding: 4px 8px;
-      margin: 3px;
-      border-radius: 5px;
-      font-size: 12px;
-    }
+.job {
+  border-left: 3px solid #3765F6;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
 
-    .section {
-      margin-bottom: 20px;
-    }
+.meta {
+  color: #666;
+  font-size: 14px;
+}
 
-    .job {
-      margin-bottom: 15px;
-    }
+.toggle-btn {
+  font-size: 12px;
+  cursor: pointer;
+  color: #3765F6;
+}
 
-    .meta {
-      color: #666;
-      font-size: 14px;
-    }
+.hidden {
+  display: none;
+}
 
-    ul {
-      padding-left: 18px;
-    }
-
-    a {
-      color: #3765F6;
-      text-decoration: none;
-    }
-
-    .header {
-      margin-bottom: 20px;
-    }
-
-    .highlight {
-      font-weight: bold;
-    }
-  </style>
+canvas {
+  max-width: 100%;
+  margin-top: 10px;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>Ray Rewat Khanthaporn</h1>
-    <div class="meta">
-      Auckland, New Zealand • AI Data Analytics • Gen AI • AI Agents
-    </div>
-    <p>
-      AI-focused data analytics professional specialising in machine learning,
-      Snowflake, and applied AI/NLP. Strong experience in building scalable
-      analytics workflows, automation frameworks, and stakeholder-ready insights.
-    </p>
-  </div>
+<!-- HEADER -->
+<h1>Ray Rewat Khanthaporn</h1>
+<div class="meta">Auckland, NZ • AI Data Analytics • Gen AI • AI Agents</div>
 
-  <!-- SKILLS -->
-  <div class="section">
-    <h2>Technical Skills</h2>
-    <div>
-      <span class="tag">Python</span>
-      <span class="tag">R</span>
-      <span class="tag">SQL</span>
-      <span class="tag">Snowflake</span>
-      <span class="tag">dbt</span>
-      <span class="tag">Machine Learning</span>
-      <span class="tag">AI / NLP</span>
-      <span class="tag">PyTorch</span>
-      <span class="tag">scikit-learn</span>
-      <span class="tag">Transformers</span>
-      <span class="tag">Qlik</span>
-      <span class="tag">Automation</span>
-    </div>
-  </div>
+<p>
+AI-focused data analytics professional specialising in machine learning,
+Snowflake, and AI/NLP. Strong in building scalable workflows,
+automation pipelines, and stakeholder-ready insights.
+</p>
 
-  <!-- EXPERIENCE -->
-  <div class="section">
-    <h2>Experience</h2>
+<!-- SKILLS -->
+<h2>Skills Overview</h2>
 
-    <div class="job">
-      <div class="highlight">Data Specialist</div>
-      <div class="meta">Health New Zealand — 2025–Present</div>
-      <ul>
-        <li>Lead complex analytics projects with strong governance and QA.</li>
-        <li>Build scalable workflows using Snowflake and R.</li>
-        <li>Develop automated testing and data pipelines.</li>
-        <li>Deliver insights to senior stakeholders and audit teams.</li>
-      </ul>
-    </div>
+<canvas id="skillChart"></canvas>
 
-    <div class="job">
-      <div class="highlight">Data Analyst</div>
-      <div class="meta">Health New Zealand — 2023–2025</div>
-      <ul>
-        <li>Built validation frameworks and analytics pipelines.</li>
-        <li>Delivered dashboards and audit insights.</li>
-      </ul>
-    </div>
+<div>
+  <span class="tag">Python</span>
+  <span class="tag">R</span>
+  <span class="tag">SQL</span>
+  <span class="tag">Snowflake</span>
+  <span class="tag">Machine Learning</span>
+  <span class="tag">AI/NLP</span>
+  <span class="tag">Automation</span>
+</div>
 
-    <div class="job">
-      <div class="highlight">Unit Pricing Analyst</div>
-      <div class="meta">APEX Group — 2022–2023</div>
-      <ul>
-        <li>Performed financial reconciliation and pricing analysis.</li>
-        <li>Improved processes using Excel automation.</li>
-      </ul>
-    </div>
+<!-- EXPERIENCE -->
+<h2>Experience</h2>
 
-    <div class="job">
-      <div class="highlight">Adjunct Lecturer (Data Analytics)</div>
-      <div class="meta">Massey University — 2022</div>
-      <ul>
-        <li>Taught machine learning and statistical modelling.</li>
-      </ul>
-    </div>
+<div class="job">
+  <strong>Data Specialist</strong>
+  <div class="meta">Health NZ • 2025–Present</div>
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
 
-  </div>
+  <ul class="hidden">
+    <li>Lead complex analytics and audit projects</li>
+    <li>Built Snowflake + R scalable pipelines</li>
+    <li>Developed automated validation frameworks</li>
+    <li>Presented insights to senior stakeholders</li>
+  </ul>
+</div>
 
-  <!-- AI VALUE -->
-  <div class="section">
-    <h2>AI Value Proposition</h2>
-    <ul>
-      <li>Gen AI and AI agent workflows for automation and insights.</li>
-      <li>Predictive modelling, clustering, and forecasting.</li>
-      <li>Strong Snowflake + analytics engineering capability.</li>
-      <li>Ability to translate business problems into data solutions.</li>
-    </ul>
-  </div>
+<div class="job">
+  <strong>Data Analyst</strong>
+  <div class="meta">Health NZ • 2023–2025</div>
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
 
-  <!-- EDUCATION -->
-  <div class="section">
-    <h2>Education</h2>
+  <ul class="hidden">
+    <li>Built dashboards and data validation logic</li>
+    <li>Delivered audit analytics insights</li>
+  </ul>
+</div>
 
-    <p><strong>Postgraduate AI Coursework</strong> — University of Auckland (2026)</p>
-    <p><strong>PhD Applied Statistics</strong> — AUT (2023)</p>
-    <p><strong>MSc Financial Mathematics</strong> — University of Exeter</p>
-    <p><strong>Master of Economics</strong> — Kasetsart University</p>
+<div class="job">
+  <strong>Adjunct Lecturer</strong>
+  <div class="meta">Massey University • 2022</div>
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
 
-  </div>
+  <ul class="hidden">
+    <li>Taught machine learning & statistical modelling</li>
+  </ul>
+</div>
 
-  <!-- FOOTER -->
-  <div class="section">
-    <h2>Links</h2>
-    <p>
-      <ainkedIn</a> • 
-      #GitHub</a>
-    </p>
-  </div>
+<!-- AI VALUE -->
+<h2>AI Value Proposition</h2>
+
+<ul>
+  <li>Gen AI + AI agents for automation workflows</li>
+  <li>Predictive modelling & statistical analysis</li>
+  <li>Snowflake + analytics engineering</li>
+  <li>Strong business translation of data insights</li>
+</ul>
+
+<!-- EDUCATION -->
+<h2>Education</h2>
+
+<p><strong>Postgraduate AI Coursework</strong> — University of Auckland</p>
+<p><strong>PhD Applied Statistics</strong> — AUT</p>
+
+<!-- LINKS -->
+<h2>Links</h2>
+
+<p>
+#GitHub</a> • 
+<ainkedIn</a>
+</p>
 
 </div>
+
+<!-- SCRIPT -->
+<script>
+
+// ✅ Expand / collapse
+function toggle(btn) {
+  const list = btn.nextElementSibling;
+  const isHidden = list.classList.contains("hidden");
+
+  list.classList.toggle("hidden");
+  btn.innerText = isHidden ? "Hide details ↑" : "View details ↓";
+}
+
+// ✅ Simple radar-like chart
+const canvas = document.getElementById("skillChart");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 300;
+canvas.height = 300;
+
+const skills = [
+  {name: "AI", value: 9},
+  {name: "ML", value: 8},
+  {name: "SQL", value: 9},
+  {name: "Python", value: 8},
+  {name: "Viz", value: 7},
+  {name: "Business", value: 8}
+];
+
+const cx = 150, cy = 150, r = 100;
+
+ctx.beginPath();
+skills.forEach((s, i) => {
+  const angle = (Math.PI * 2 / skills.length) * i - Math.PI / 2;
+  const x = cx + Math.cos(angle) * (r * (s.value / 10));
+  const y = cy + Math.sin(angle) * (r * (s.value / 10));
+  i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+});
+ctx.closePath();
+
+ctx.fillStyle = "rgba(55,101,246,0.4)";
+ctx.fill();
+
+ctx.strokeStyle = "#3765F6";
+ctx.stroke();
+
+</script>
 
 </body>
 </html>
