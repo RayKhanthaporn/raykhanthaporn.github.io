@@ -13,6 +13,110 @@ body {
   color: #1a1a1a;
 }
 
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 36px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.column {
+  min-width: 0;
+}
+
+
+
+/*
+  Moves the project beneath the Technical Skills heading,
+  while retaining the right-hand column.
+*/
+.project-column {
+  padding-top: 1px;
+}
+
+.project-card {
+  padding: 0;
+}
+
+.project-card h3 {
+  margin: 0 0 22px;
+  font-size: 1.6rem;
+  line-height: 1.15;
+}
+
+.project-card p {
+  margin: 0 0 20px;
+  line-height: 1.25;
+}
+
+.project-link {
+  display: inline-block;
+  color: #0000ee;
+  font-size: 1.1rem;
+}
+
+.github-block {
+  margin-top: 1px;
+  padding-top: 10px;
+  border-top: 1px solid #d0d7de;
+}
+
+.github-link {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Stack both columns on mobile */
+@media (max-width: 700px) {
+  .two-column {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .project-column {
+    padding-top: 0;
+  }
+}
+
+.github-block {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid #d0d7de;
+}
+
+.github-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  color: #ffffff;
+  background-color: #24292f;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.github-link:hover,
+.github-link:focus {
+  background-color: #0969da;
+  transform: translateY(-1px);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+@media (max-width: 700px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
 .two-column {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -33,6 +137,14 @@ h2 {
   margin-top: 2rem;
   border-bottom: 2px solid #3765F6;
   padding-bottom: 5px;
+}
+
+
+.section-heading {
+  margin-top: 2rem;
+  margin: 0 0 28px;
+  padding-bottom: 2px solid #3765F6;
+  border-bottom: 2px solid #315cff;
 }
 
 .tag {
@@ -99,273 +211,39 @@ Proven capability in designing scalable data solutions, leveraging Gen AI and AI
 Skilled in translating complex analytical outputs into clear, actionable insights for business decision-making.
 </p>
 
-<main class="two-column">
 
-    <section class="column">
-      <h2>Technical Skills</h2>
-
-        <div class="skills-tags">
-
-          <div class="skill-block">
-            <div class="skill-title">Priority AI Keywords</div>
-            <div>
-              <span class="tag">Gen AI</span>
-              <span class="tag">AI Agents</span>
-              <span class="tag">Applied AI</span>
-              <span class="tag">Machine Learning</span>
-              <span class="tag">AI/NLP</span>
-              <span class="tag">Automation</span>
-              <span class="tag">Predictive Modelling</span>
-            </div>
-          </div>
-
-          <div class="skill-block">
-            <div class="skill-title">Programming</div>
-            <div>
-              <span class="tag">Python</span>
-              <span class="tag">R</span>
-              <span class="tag">MATLAB</span>
-              <span class="tag">SAS EM</span>
-              <span class="tag">SQL</span>
-              <span class="tag">VBA</span>
-            </div>
-          </div>
-
-          <div class="skill-block">
-            <div class="skill-title">Python Library</div>
-            <div>
-              <span class="tag">pandas</span>
-              <span class="tag">NumPy</span>
-              <span class="tag">scikit-learn</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">Transformers</span>
-              <span class="tag">Matplotlib</span>
-            </div>
-          </div>
-
-          <div class="skill-block">
-            <div class="skill-title">Data Platform</div>
-            <div>
-              <span class="tag">Snowflake</span>
-              <span class="tag">dbt</span>
-              <span class="tag">Qlik</span>
-              <span class="tag">Jupyter</span>
-              <span class="tag">VS Code</span>
-              <span class="tag">UiPath</span>
-            </div>
-          </div>
-
-          <div class="skill-block">
-            <div class="skill-title">Analytics Method</div>
-            <div>
-              <span class="tag">Predictive Modelling</span>
-              <span class="tag">Time Series</span>
-              <span class="tag">Econometrics</span>
-              <span class="tag">Bayesian</span>
-              <span class="tag">Multivariate</span>
-              <span class="tag">Data Mining</span>
-            </div>
-          </div>
-
-        </div>
-
-    </section>
-
-    <aside class="column">
-      <h2>GitHub
-              <a href="https://github.com/RayKhanthaporn"
-         target="_blank"
-         rel="noopener noreferrer">
-        Visit my GitHub profile
-      </a>
-      </h2>
-      <div class="card project-card">
-  <div class="card-body">
-    <h3>📄 AI Agent - Contract Reviewer
-
-    </h3>
-
-    <p>
-      AI-driven contract analysis application designed to assist users with
-      reviewing agreements, identifying important clauses, summarising content,
-      and flagging potential risks.
-    </p>
-
-    <p>
-      <strong>Technologies:</strong> AI, NLP, JavaScript, GitHub Pages
-    </p>
-
-    <a
-      href="https://raykhanthaporn.github.io/contract-agent/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="project-link"
-    >
-      🔗 Launch Project
-    </a>
-  </div>
-</div>
-</main>
- 
-  
-<!-- EXPERIENCE -->
-<h2>Experience</h2>
-
-<div class="job">
-  <strong>Data Specialist</strong>
-  <div class="meta">Health NZ - Te Whatu Ora • Audit & Assurance Group • 2025–Present</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Lead complex analytics and audit projects</li>
-    <li>Built Snowflake + R scalable pipelines</li>
-    <li>Developed automated validation frameworks</li>
-    <li>Presented insights to senior stakeholders</li>
-  </ul>
-</div>
-
-<div class="job">
-  <strong>Data Analyst</strong>
-  <div class="meta">Health NZ - Te Whatu Ora • Audit & Assurance Group • 2023–2025</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Built dashboards and data validation logic</li>
-    <li>Delivered audit analytics insights</li>
-  </ul>
-</div>
-
-
-<div class="job">
-  <strong>Unit Pricing Analyst</strong>
-  <div class="meta">APEX Group / MMC • 12/2022 – 09/2023</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Prepared and evaluated daily unit prices for client investment funds, applying reconciliation, analytical checks and issue investigation to support accurate financial reporting</li>
-    <li>Reviewed daily reconciliations, investigated exceptions and cleared differences using advanced Excel and structured analytical workflows</li>
-    <li>Identified and documented process improvements to reduce errors and cycle time using Excel macros and automation techniques</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <strong>Adjunct Lecturer</strong>
-  <div class="meta">Massey University • 2022</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Delivered postgraduate Data Mining and Multivariate Analysis courses</li>
-    <li>Taught machine learning & statistical modelling including logistic regression, decision trees, ensemble methods, Naïve Bayes, neural networks, SVMs, PCA, LDA, clustering and association analysis</li>
-    <li>Mentored master students on analytics projects</li>
-  </ul>
-</div>
-
-<div class="job">
-  <strong>Tutorial Lecturer</strong>
-  <div class="meta">Auckland University of Technology • 09/2018 – 02/2022</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Taught applied statistics and mathematics tutorials</li>
-    <li>Marked coursework and examinations</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <strong>Researcher</strong>
-  <div class="meta">02/2015 – 09/2019</div>
-  <div class="meta">Fiscal Policy Research Institute Foundation, Ministry of Finance, Thailand</div>
-  <div class="meta">Thailand Development Research Institute</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Conducted quantitative and qualitative policy research</li>
-    <li>Integrating statistical analysis with market, industry and stakeholder insights</li>
-    <li>Developed technical reports outlining research scope</li>
-    <li>Led fieldwork, stakeholder interviews, expert hearings and cross-functional coordination to support evidence-based recommendations</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <strong>Quantitative Analyst</strong>
-  <div class="meta">Thai Bond Market Association • 11/2014 – 01/2015 | 10/2015 – 05/2017</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Provided daily Thai bond mark-to-market prices and developed methodologies for pricing new bonds and structured products using VBA Excel and MATLAB</li>
-    <li>Conducted quantitative research on financial markets, bond pricing conventions, money market development and data services</li>
-    <li>Delivered bond pricing analysis workshops for market participants, translating technical pricing methodologies into practical guidance</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <strong>Software Developer</strong>
-  <div class="meta">DST Worldwide Services | Kasikorn Bank | AIA Thailand • 12/2008-11/2012</div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Designed, developed and maintained enterprise applications using COBOL, VSAM and SQL in banking and financial systems</li>
-    <li>Produced technical specifications, wrote maintainable code and completed unit testing</li>
-  </ul>
-</div>
-
-  <h2>Education</h2>
-<!-- EDUCATION -->
-  <div class="job">
-    <span class="tag">2026 • AI Courseworks</span>
-    <span class="tag">2026 • Snowflake Hands-on Essentials</span>
-    <span class="tag">2026 • dbt Fundamentals</span>
-    <span class="tag">2023 • PhD</span>
-    <span class="tag">2014 • MSc</span>
-    <span class="tag">2011 • MEcon</span>
-    <span class="tag">2007 • Math</span>
-  </div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-  
-  <ul class="hidden meta">
-    <li>2026 — AI Courseworks (University of Auckland, NZ) (COMPSCI 713 AI Fundamentals and COMPSCI 714 AI Architecture and Design)</li>
-    <li>2023 — PhD Applied Statistics (Auckland University of Technology, NZ)</li>
-    <li>2014 — MSc Financial Mathematics (University of Exeter, UK)</li>
-    <li>2011 — Master of Economics (Kasetsart University, TH)</li>
-    <li>2007 — BSc Applied Mathematics (King Mongkut’s University of Technology Thonburi, TH)</li>
-  </ul>
-</div>
-
-
-
-<!-- PUBLIC SPEAKING -->
 <h2>Public Speaking</h2>
 
-<div class="job">
-  <!-- Tags (same pattern as Education) -->
-  <span class="tag">2024 • Keynote Speaker — IIA NZ Conference</span>
-  <span class="tag">2024 • Speaker — IIA Education Day</span>
+  <div class="job">
+      <!-- Tags (same pattern as Education) -->
+      <span class="tag">Keynote Speaker in Conference — Data Analytics</span>
+      <span class="tag">Speaker — Education Day in Data Analytics and AI</span>
 
-  <!-- Toggle -->
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+      <!-- Toggle -->
+      <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
 
-  <!-- Details -->
-  <ul class="hidden meta">
-    <li>
-      <strong>IIA NZ Conference 2024</strong> — Museum of New Zealand Te Papa, Wellington<br>
-      Topic: Harnessing Data Analytics — Building Resilience for Internal Auditors in Turbulent Times
-    </li>
-    <li>
-      <strong>IIA Education Day 2024</strong> — KPMG Auckland<br>
-      Topic: Data Analytics and AI
-    </li>
-  </ul>
+      <!-- Details -->
+      <ul class="hidden meta">
+        <li>
+          <strong>IIA NZ Conference 2024</strong> — Museum of New Zealand Te Papa, Wellington<br>
+          Topic: Harnessing Data Analytics — Building Resilience for Internal Auditors in Turbulent Times
+        </li>
+        <li>
+          <strong>IIA Education Day 2024</strong> — KPMG Auckland<br>
+          Topic: Data Analytics and AI
+        </li>
+      </ul>
 </div>
 
 
-<h2>Selected Publications</h2>
+<h2>Selected Publication</h2>
 
 <div class="job">
 
   <!-- Summary tags -->
   <div>
-    <span class="tag">2025 • Bayesian Copula + ML</span>
-    <span class="tag">2023 • GARCH + COVID Markets</span>
+    <span class="tag">Machine Learning Opitisation + Bayesian</span>
+    <span class="tag">Time Serise + COVID Markets</span>
 
   <!-- Toggle -->
   <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
@@ -391,19 +269,280 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 
 </div>
 
-  
-
-<h2>Links</h2>
-  
-<p>
-
-  <a href="https://linkedin.com/in/ray-rewat-khanthaporn" target="_blank" rel="noopener noreferrer">
-    LinkedIn
-  </a>
-  
-</p>
-
 </div>
+<h2 class="section-heading">Technical Skills</h2>
+<main class="two-column">
+  <!-- Left column -->
+  <section class="column skills-column">
+ 
+    <div class="skills-tags">
+
+      <div class="skill-block">
+        <div class="skill-title">Priority AI Keywords</div>
+        <div>
+          <span class="tag">Gen AI</span>
+          <span class="tag">AI Agents</span>
+          <span class="tag">Applied AI</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">AI/NLP</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Predictive Modelling</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-title">Programming</div>
+        <div>
+          <span class="tag">Python</span>
+          <span class="tag">R</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">SAS EM</span>
+          <span class="tag">SQL</span>
+          <span class="tag">VBA</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-title">Python Libraries</div>
+        <div>
+          <span class="tag">pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">Transformers</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-title">Data Platforms</div>
+        <div>
+          <span class="tag">Snowflake</span>
+          <span class="tag">dbt</span>
+          <span class="tag">Qlik</span>
+          <span class="tag">Jupyter</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">UiPath</span>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-title">Analytics Methods</div>
+        <div>
+          <span class="tag">Predictive Modelling</span>
+          <span class="tag">Time Series</span>
+          <span class="tag">Econometrics</span>
+          <span class="tag">Bayesian</span>
+          <span class="tag">Multivariate</span>
+          <span class="tag">Data Mining</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Right column -->
+  <aside class="column project-column">
+
+    <div class="card project-card">
+      <div class="card-body">
+
+        <div class="skill-title">📄 AI Agent – Contract Reviewer</div>
+        <p class="meta">
+          AI-driven contract analysis application designed to assist users
+          with reviewing agreements, identifying important clauses,
+          summarising content, and flagging potential risks.
+        </p>
+
+        <p class="meta">
+          <strong>Technologies:</strong>
+          AI, NLP, JavaScript, GitHub Pages
+        </p>
+
+        <a 
+          href="https://raykhanthaporn.github.io/contract-agent/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-link"
+        >
+          🔗 Launch Project
+        </a>
+
+      </div>
+    </div>
+
+    <div class="github-block">
+      <a
+        href="https://github.com/RayKhanthaporn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-link"
+      >
+        Visit my GitHub profile
+      </a>
+    </div>
+
+  </aside>
+
+</main>
+ 
+  
+<!-- EXPERIENCE -->
+<h2>Experience</h2>
+
+<div class="job">
+  <div class="job-heading">
+    <strong>Data Specialist</strong>
+    <span class="meta">
+      Health NZ - Te Whatu Ora • Audit &amp; Assurance Group • 2025–Present
+    </span>
+  </div>
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Lead complex analytics and audit projects</li>
+    <li>Built Snowflake + R scalable pipelines</li>
+    <li>Developed automated validation frameworks</li>
+    <li>Presented insights to senior stakeholders</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-heading">
+  <strong>Data Analyst</strong>
+  <span class="meta">
+    Health NZ - Te Whatu Ora • Audit & Assurance Group • 09/2023–2025
+  </span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Built dashboards and data validation logic</li>
+    <li>Delivered audit analytics insights</li>
+  </ul>
+</div>
+
+
+<div class="job">
+    <div class="job-heading">
+  <strong>Unit Pricing Analyst</strong>
+  <span class="meta">
+    APEX Group / MMC • 12/2022 – 09/2023
+  </span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Prepared and evaluated daily unit prices for client investment funds, applying reconciliation, analytical checks and issue investigation to support accurate financial reporting</li>
+    <li>Reviewed daily reconciliations, investigated exceptions and cleared differences using advanced Excel and structured analytical workflows</li>
+    <li>Identified and documented process improvements to reduce errors and cycle time using Excel macros and automation techniques</li>
+  </ul>
+</div>
+  
+<div class="job">
+  <div class="job-heading">
+    <strong>Adjunct Lecturer</strong>
+    <span class="meta">    Massey University • 2022  </span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Delivered postgraduate Data Mining and Multivariate Analysis courses</li>
+    <li>Taught machine learning & statistical modelling including logistic regression, decision trees, ensemble methods, Naïve Bayes, neural networks, SVMs, PCA, LDA, clustering and association analysis</li>
+    <li>Mentored master students on analytics projects</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-heading">
+    <strong>Tutorial Lecturer</strong>
+    <span class="meta">  Auckland University of Technology • 09/2018 – 02/2022  </span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Taught applied statistics and mathematics tutorials</li>
+    <li>Marked coursework and examinations</li>
+  </ul>
+</div>
+  
+<div class="job">
+  <div class="job-heading">
+    <strong>Researcher</strong>
+    <span class="meta"> Fiscal Policy Research Institute Foundation, Ministry of Finance, Thailand  </span>
+    <span class="meta"> | Thailand Development Research Institute  </span>
+    <span class="meta"> • 02/2015–09/2019  </span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Conducted quantitative and qualitative policy research</li>
+    <li>Integrating statistical analysis with market, industry and stakeholder insights</li>
+    <li>Developed technical reports outlining research scope</li>
+    <li>Led fieldwork, stakeholder interviews, expert hearings and cross-functional coordination to support evidence-based recommendations</li>
+  </ul>
+</div>
+  
+<div class="job">
+  <div class="job-heading">
+    <strong>Quantitative Analyst</strong>
+    <span class="meta"> Thai Bond Market Association • 11/2014–01/2015 | 10/2015–05/2017 </span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Provided daily Thai bond mark-to-market prices and developed methodologies for pricing new bonds and structured products using VBA Excel and MATLAB</li>
+    <li>Conducted quantitative research on financial markets, bond pricing conventions, money market development and data services</li>
+    <li>Delivered bond pricing analysis workshops for market participants, translating technical pricing methodologies into practical guidance</li>
+  </ul>
+</div>
+  
+<div class="job">
+  <div class="job-heading">
+    <strong>Software Developer</strong>
+    <span class="meta"> DST Worldwide Services | Kasikorn Bank | AIA Thailand • 12/2008-11/2012</span>
+  </div>
+
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+
+  <ul class="hidden">
+    <li>Designed, developed and maintained enterprise applications using COBOL, VSAM and SQL in banking and financial systems</li>
+    <li>Produced technical specifications, wrote maintainable code and completed unit testing</li>
+  </ul>
+</div>
+
+
+  <h2>Education and Training</h2>
+<!-- EDUCATION -->
+  <div class="job">
+    <span class="tag">2026 • AI Courseworks</span>
+    <span class="tag">2026 • Snowflake Hands-on Essentials</span>
+    <span class="tag">2026 • dbt Fundamentals</span>
+    <span class="tag">2023 • PhD</span>
+    <span class="tag">2014 • MSc</span>
+    <span class="tag">2011 • MEcon</span>
+    <span class="tag">2007 • Math</span>
+  </div>
+  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+  
+  <ul class="hidden meta">
+    <li>2026 — AI Courseworks (University of Auckland, NZ) (COMPSCI 713 AI Fundamentals and COMPSCI 714 AI Architecture and Design)</li>
+    <li>2023 — PhD Applied Statistics (Auckland University of Technology, NZ)</li>
+    <li>2014 — MSc Financial Mathematics (University of Exeter, UK)</li>
+    <li>2011 — Master of Economics (Kasetsart University, TH)</li>
+    <li>2007 — BSc Applied Mathematics (King Mongkut’s University of Technology Thonburi, TH)</li>
+  </ul>
+</div>
+
+
+
 
   
 <!-- SCRIPT -->
