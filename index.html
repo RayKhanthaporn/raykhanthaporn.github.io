@@ -171,10 +171,8 @@ h2 {
   display: none;
 }
 
-canvas {
-  max-width: 100%;
-  margin-top: 10px;
-}
+
+
 
 .skills-overview {
   width: 100%;
@@ -184,8 +182,7 @@ canvas {
 
 .radar-card {
   width: 100%;
-  padding: 12px;
-  overflow: hidden;
+  padding: 10px;
   background: #ffffff;
   border: 1px solid #dfe3eb;
   border-radius: 14px;
@@ -196,26 +193,25 @@ canvas {
 .radar-container {
   position: relative;
   width: 100%;
-  height: 360px;
-  padding: 8px;
+  height: 320px;
   background: #f2f5ff;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
-/* Override the generic canvas rule */
+/* Ensure Chart.js controls the canvas dimensions */
 .radar-container canvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
-  max-width: none;
-  margin-top: 0;
+  max-width: none !important;
+  margin: 0 !important;
 }
 
 .chart-note {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: #667085;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1.4;
   text-align: center;
 }
@@ -233,7 +229,6 @@ canvas {
 
   .radar-container {
     height: 330px;
-    padding: 2px;
   }
 }
 
@@ -345,7 +340,7 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 
   <!-- Right column -->
   <aside class="column project-column">
-    <div class="skill-title">SKILLS OVERVIEW</div>
+  <div class="skill-title">SKILLS OVERVIEW</div>
 
     <section class="skills-overview">
       <div class="radar-card">
@@ -353,17 +348,8 @@ Skilled in translating complex analytical outputs into clear, actionable insight
         <div class="radar-container">
           <canvas
             id="skillsRadarChart"
-            role="img"
-            aria-label="Radar chart showing data analytics and AI skill scores"
-          >
-            Data analytics and AI skill scores:
-            Python and Data Analytics 8,
-            SQL and Data Engineering 7,
-            Machine Learning 8,
-            Generative AI and NLP 8,
-            Data Visualisation 7,
-            Automation and Deployment 7.
-          </canvas>
+            aria-label="Radar chart showing data analytics and AI skills"
+          ></canvas>
         </div>
 
         <p class="chart-note">
@@ -372,6 +358,11 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 
       </div>
     </section>
+
+
+
+
+
 
     <div class="card project-card">
       <div class="card-body">
@@ -644,7 +635,6 @@ Skilled in translating complex analytical outputs into clear, actionable insight
   
 <!-- SCRIPT -->
 <script>
-  /* Expand and collapse detail sections */
   function toggle(button) {
     const detailElement = button.nextElementSibling;
 
@@ -655,24 +645,33 @@ Skilled in translating complex analytical outputs into clear, actionable insight
     const isHidden = detailElement.classList.contains("hidden");
 
     detailElement.classList.toggle("hidden");
+
     button.textContent = isHidden
       ? "Hide details ↑"
       : "View details ↓";
   }
 
-  /* Create the radar chart after the page and Chart.js have loaded */
-  document.addEventListener("DOMContentLoaded", function () {
+  window.addEventListener("load", function () {
     const radarCanvas = document.getElementById("skillsRadarChart");
 
     if (!radarCanvas) {
-      console.error('Canvas with id "skillsRadarChart" was not found.');
+      console.error(
+        'Radar chart error: canvas "#skillsRadarChart" was not found.'
+      );
       return;
     }
 
     if (typeof Chart === "undefined") {
       console.error(
-        "Chart.js was not loaded. Check the Chart.js script tag in the head."
+        "Radar chart error: Chart.js did not load."
       );
+
+      const container = radarCanvas.parentElement;
+      container.innerHTML =
+        '<p style="padding:20px;color:#b42318;">' +
+        "The skills chart could not load. Check the Chart.js script element." +
+        "</p>";
+
       return;
     }
 
@@ -692,6 +691,7 @@ Skilled in translating complex analytical outputs into clear, actionable insight
         datasets: [
           {
             label: "Skill score",
+
             data: [8, 7, 8, 8, 7, 7],
 
             backgroundColor: "rgba(57, 235, 142, 0.45)",
@@ -715,10 +715,10 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 
         layout: {
           padding: {
-            top: 20,
-            right: 30,
-            bottom: 20,
-            left: 30
+            top: 12,
+            right: 12,
+            bottom: 12,
+            left: 12
           }
         },
 
@@ -748,11 +748,11 @@ Skilled in translating complex analytical outputs into clear, actionable insight
             pointLabels: {
               display: true,
               color: "#3765f6",
-              padding: 8,
+              padding: 7,
 
               font: {
                 family: "Arial, sans-serif",
-                size: 11,
+                size: 10,
                 weight: "600"
               }
             }
@@ -770,7 +770,7 @@ Skilled in translating complex analytical outputs into clear, actionable insight
             backgroundColor: "#24292f",
             titleColor: "#ffffff",
             bodyColor: "#ffffff",
-            padding: 12,
+            padding: 10,
 
             callbacks: {
               label: function (context) {
