@@ -14,16 +14,6 @@ body {
 }
 
 
-.two-column {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-  gap: 36px;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  align-items: start;
-}
-
 .column {
   min-width: 0;
 }
@@ -72,10 +62,6 @@ body {
 
 /* Stack both columns on mobile */
 @media (max-width: 700px) {
-  .two-column {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
 
   .project-column {
     padding-top: 0;
@@ -108,24 +94,30 @@ body {
 
 .two-column {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
   gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.column {
+  min-width: 0;
 }
 
 @media (max-width: 700px) {
   .two-column {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
 }
 
-.two-column {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
-  max-width: 1000px;
-  margin: 0 auto;
+@media (max-width: 700px) {
+
 }
-  
+
+ 
 .container {
   max-width: 900px;
   margin: auto;
@@ -185,67 +177,68 @@ canvas {
 }
 
 .skills-overview {
-    width: 100%;
-    max-width: 720px;
-    margin: 30px auto;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+  width: 100%;
+  margin: 10px 0 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .skills-overview h2 {
-    margin: 0 0 12px;
-    color: #5f6673;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1.35rem;
-    letter-spacing: 2px;
-  }
+.radar-card {
+  width: 100%;
+  padding: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #dfe3eb;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(31, 35, 40, 0.06);
+  box-sizing: border-box;
+}
 
+.radar-container {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  padding: 8px;
+  background: #f2f5ff;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Override the generic canvas rule */
+.radar-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  margin-top: 0;
+}
+
+.chart-note {
+  margin: 12px 0 0;
+  color: #667085;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .radar-container {
+    height: 360px;
+  }
+}
+
+@media (max-width: 420px) {
   .radar-card {
-    padding: 18px;
-    overflow: hidden;
-    background: #ffffff;
-    border: 1px solid #dfe3eb;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(31, 35, 40, 0.06);
+    padding: 6px;
   }
 
   .radar-container {
-    position: relative;
-    width: 50%;
-    height: 430px;
-    padding: 10px;
-    background: #f2f5ff;
-    border-radius: 4px;
+    height: 330px;
+    padding: 2px;
   }
-
-  .chart-note {
-    margin: 12px 0 0;
-    color: #667085;
-    font-size: 0.8rem;
-    text-align: centre;
-  }
-
-  @media (max-width: 600px) {
-    .skills-overview {
-      margin: 20px auto;
-    }
-
-    .skills-overview h2 {
-      font-size: 1.15rem;
-    }
-
-    .radar-card {
-      padding: 10px;
-      border-radius: 14px;
-    }
-
-    .radar-container {
-      height: 350px;
-      padding: 4px;
-    }
-  }
-
+}
 
 </style>
+<https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.jsscript>
 </head>
 
 <body>
@@ -275,24 +268,6 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 </p>
 
 
-<!-- Chart.js -->
-<section class="skills-overview">
-  <h2>SKILLS OVERVIEW</h2>
-
-  <div class="radar-card">
-    <div class="radar-container">
-      <canvas
-        id="skillsRadarChart"
-        role="img"
-        aria-label="Radar chart showing Ray Khanthaporn's data analytics and AI skill scores"
-      ></canvas>
-    </div>
-
-    <p class="chart-note">
-      Portfolio-based assessment scored out of 10
-    </p>
-  </div>
-</section>
 
 
 <h2 class="section-heading">Technical Skills</h2>
@@ -369,7 +344,33 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 
   <!-- Right column -->
   <aside class="column project-column">
+    <div class="skill-title">SKILLS OVERVIEW</div>
 
+    <section class="skills-overview">
+      <div class="radar-card">
+
+        <div class="radar-container">
+          <canvas
+            id="skillsRadarChart"
+            role="img"
+            aria-label="Radar chart showing data analytics and AI skill scores"
+          >
+            Data analytics and AI skill scores:
+            Python and Data Analytics 8,
+            SQL and Data Engineering 7,
+            Machine Learning 8,
+            Generative AI and NLP 8,
+            Data Visualisation 7,
+            Automation and Deployment 7.
+          </canvas>
+        </div>
+
+        <p class="chart-note">
+          Portfolio-based assessment scored out of 10
+        </p>
+
+      </div>
+    </section>
 
     <div class="card project-card">
       <div class="card-body">
@@ -642,158 +643,149 @@ Skilled in translating complex analytical outputs into clear, actionable insight
   
 <!-- SCRIPT -->
 <script>
+  /* Expand and collapse detail sections */
+  function toggle(button) {
+    const detailElement = button.nextElementSibling;
 
-// ✅ Expand / collapse
-function toggle(btn) {
-  const list = btn.nextElementSibling;
-  const isHidden = list.classList.contains("hidden");
+    if (!detailElement) {
+      return;
+    }
 
-  list.classList.toggle("hidden");
-  btn.innerText = isHidden ? "Hide details ↑" : "View details ↓";
-}
+    const isHidden = detailElement.classList.contains("hidden");
 
-// ✅ Simple radar-like chart
-const canvas = document.getElementById("skillChart");
-const ctx = canvas.getContext("2d");
+    detailElement.classList.toggle("hidden");
+    button.textContent = isHidden
+      ? "Hide details ↑"
+      : "View details ↓";
+  }
 
-canvas.width = 300;
-canvas.height = 300;
+  /* Create the radar chart after the page and Chart.js have loaded */
+  document.addEventListener("DOMContentLoaded", function () {
+    const radarCanvas = document.getElementById("skillsRadarChart");
 
-const skills = [
-  {name: "AI", value: 9},
-  {name: "ML", value: 8},
-  {name: "SQL", value: 9},
-  {name: "Python", value: 8},
-  {name: "Viz", value: 7},
-  {name: "Business", value: 8}
-];
+    if (!radarCanvas) {
+      console.error('Canvas with id "skillsRadarChart" was not found.');
+      return;
+    }
 
-const cx = 150, cy = 150, r = 100;
+    if (typeof Chart === "undefined") {
+      console.error(
+        "Chart.js was not loaded. Check the Chart.js script tag in the head."
+      );
+      return;
+    }
 
-ctx.beginPath();
-skills.forEach((s, i) => {
-  const angle = (Math.PI * 2 / skills.length) * i - Math.PI / 2;
-  const x = cx + Math.cos(angle) * (r * (s.value / 10));
-  const y = cy + Math.sin(angle) * (r * (s.value / 10));
-  i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-});
-ctx.closePath();
+    new Chart(radarCanvas, {
+      type: "radar",
 
-ctx.fillStyle = "rgba(55,101,246,0.4)";
-ctx.fill();
+      data: {
+        labels: [
+          ["Python &", "Data Analytics"],
+          ["SQL &", "Data Engineering"],
+          ["Machine", "Learning"],
+          ["Generative AI", "& NLP"],
+          ["Data", "Visualisation"],
+          ["Automation &", "Deployment"]
+        ],
 
-ctx.strokeStyle = "#3765F6";
-ctx.stroke();
+        datasets: [
+          {
+            label: "Skill score",
+            data: [8, 7, 8, 8, 7, 7],
 
+            backgroundColor: "rgba(57, 235, 142, 0.45)",
+            borderColor: "#28d982",
+            borderWidth: 2,
 
-const radarCanvas = document.getElementById("skillsRadarChart");
+            pointBackgroundColor: "#3765f6",
+            pointBorderColor: "#ffffff",
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
 
-  new Chart(radarCanvas, {
-    type: "radar",
-
-    data: {
-      labels: [
-        ["Python &", "Data Analytics"],
-        ["SQL &", "Data Engineering"],
-        ["Machine", "Learning"],
-        ["Generative AI", "& NLP"],
-        ["Data", "Visualisation"],
-        ["Automation &", "Deployment"]
-      ],
-
-      datasets: [
-        {
-          label: "Skill score",
-          data: [8, 7, 8, 8, 7, 7],
-
-          backgroundColor: "rgba(57, 235, 142, 0.55)",
-          borderColor: "#28d982",
-          borderWidth: 2,
-
-          pointBackgroundColor: "#2f69f6",
-          pointBorderColor: "#ffffff",
-          pointBorderWidth: 2,
-          pointRadius: 4,
-          pointHoverRadius: 6
-        }
-      ]
-    },
-
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-
-      layout: {
-        padding: {
-          top: 20,
-          right: 35,
-          bottom: 20,
-          left: 35
-        }
-      },
-
-      scales: {
-        r: {
-          min: 0,
-          max: 10,
-
-          ticks: {
-            display: false,
-            stepSize: 2
-          },
-
-          angleLines: {
-            display: true,
-            color: "rgba(65, 112, 240, 0.20)",
-            lineWidth: 1
-          },
-
-          grid: {
-            circular: false,
-            color: "rgba(65, 112, 240, 0.18)",
-            lineWidth: 1
-          },
-
-          pointLabels: {
-            color: "#416ff0",
-            padding: 12,
-            font: {
-              family: "'Courier New', Courier, monospace",
-              size: 13,
-              weight: "bold"
-            }
+            fill: true
           }
-        }
+        ]
       },
 
-      plugins: {
-        legend: {
-          display: false
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        layout: {
+          padding: {
+            top: 20,
+            right: 30,
+            bottom: 20,
+            left: 30
+          }
         },
 
-        tooltip: {
-          displayColors: false,
-          backgroundColor: "#24292f",
-          titleColor: "#ffffff",
-          bodyColor: "#ffffff",
-          padding: 12,
+        scales: {
+          r: {
+            min: 0,
+            max: 10,
+            beginAtZero: true,
 
-          callbacks: {
-            label: function (context) {
-              return "Score: " + context.raw + " / 10";
+            ticks: {
+              display: false,
+              stepSize: 2
+            },
+
+            angleLines: {
+              display: true,
+              color: "rgba(55, 101, 246, 0.25)",
+              lineWidth: 1
+            },
+
+            grid: {
+              circular: false,
+              color: "rgba(55, 101, 246, 0.20)",
+              lineWidth: 1
+            },
+
+            pointLabels: {
+              display: true,
+              color: "#3765f6",
+              padding: 8,
+
+              font: {
+                family: "Arial, sans-serif",
+                size: 11,
+                weight: "600"
+              }
             }
           }
+        },
+
+        plugins: {
+          legend: {
+            display: false
+          },
+
+          tooltip: {
+            enabled: true,
+            displayColors: false,
+            backgroundColor: "#24292f",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
+            padding: 12,
+
+            callbacks: {
+              label: function (context) {
+                return "Score: " + context.raw + " / 10";
+              }
+            }
+          }
+        },
+
+        animation: {
+          duration: 900,
+          easing: "easeOutQuart"
         }
-      },
-
-      animation: {
-        duration: 900,
-        easing: "easeOutQuart"
       }
-    }
+    });
   });
-
-
 </script>
 
 </body>
