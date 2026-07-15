@@ -91,6 +91,7 @@ body {
 .github-link {
   display: inline-block;
   margin-top: 10px;
+  margin-left: auto;
   padding: 10px 16px;
   color: #ffffff;
   background-color: #24292f;
@@ -182,6 +183,68 @@ canvas {
   max-width: 100%;
   margin-top: 10px;
 }
+
+.skills-overview {
+    width: 100%;
+    max-width: 720px;
+    margin: 30px auto;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .skills-overview h2 {
+    margin: 0 0 12px;
+    color: #5f6673;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+  }
+
+  .radar-card {
+    padding: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #dfe3eb;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(31, 35, 40, 0.06);
+  }
+
+  .radar-container {
+    position: relative;
+    width: 50%;
+    height: 430px;
+    padding: 10px;
+    background: #f2f5ff;
+    border-radius: 4px;
+  }
+
+  .chart-note {
+    margin: 12px 0 0;
+    color: #667085;
+    font-size: 0.8rem;
+    text-align: centre;
+  }
+
+  @media (max-width: 600px) {
+    .skills-overview {
+      margin: 20px auto;
+    }
+
+    .skills-overview h2 {
+      font-size: 1.15rem;
+    }
+
+    .radar-card {
+      padding: 10px;
+      border-radius: 14px;
+    }
+
+    .radar-container {
+      height: 350px;
+      padding: 4px;
+    }
+  }
+
+
 </style>
 </head>
 
@@ -212,8 +275,26 @@ Skilled in translating complex analytical outputs into clear, actionable insight
 </p>
 
 
+<!-- Chart.js -->
+<section class="skills-overview">
+  <h2>SKILLS OVERVIEW</h2>
 
-</div>
+  <div class="radar-card">
+    <div class="radar-container">
+      <canvas
+        id="skillsRadarChart"
+        role="img"
+        aria-label="Radar chart showing Ray Khanthaporn's data analytics and AI skill scores"
+      ></canvas>
+    </div>
+
+    <p class="chart-note">
+      Portfolio-based assessment scored out of 10
+    </p>
+  </div>
+</section>
+
+
 <h2 class="section-heading">Technical Skills</h2>
 <main class="two-column">
   <!-- Left column -->
@@ -289,6 +370,7 @@ Skilled in translating complex analytical outputs into clear, actionable insight
   <!-- Right column -->
   <aside class="column project-column">
 
+
     <div class="card project-card">
       <div class="card-body">
 
@@ -312,25 +394,35 @@ Skilled in translating complex analytical outputs into clear, actionable insight
         >
           🔗 Launch Project
         </a>
-
-      </div>
-    </div>
-
-    <div class="github-block">
+            <div class="github-block">
       <a
         href="https://github.com/RayKhanthaporn"
         target="_blank"
         rel="noopener noreferrer"
         class="github-link"
       >
-        Visit my GitHub profile
+        Visit my GitHub
+      </a>
+
+      <a
+        href="https://linkedin.com/in/ray-rewat-khanthaporn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-link"
+      >
+        Visit my Linkedln
       </a>
     </div>
+      </div>
+    </div>
+
+
 
   </aside>
 
 </main>
  
+
 
 <h2>Public Speaking</h2>
 
@@ -364,7 +456,7 @@ Skilled in translating complex analytical outputs into clear, actionable insight
   <div>
     <span class="tag">Machine Learning Opitisation + Bayesian</span>
     <span class="tag">Time Serise + COVID Markets</span>
-
+  </div>
   <!-- Toggle -->
   <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
 
@@ -430,7 +522,7 @@ Skilled in translating complex analytical outputs into clear, actionable insight
     <div class="job-heading">
   <strong>Unit Pricing Analyst</strong>
   <span class="meta">
-    APEX Group / MMC • 12/2022 – 09/2023
+    APEX Group / MMC • 12/2022–09/2023
   </span>
   </div>
 
@@ -523,22 +615,24 @@ Skilled in translating complex analytical outputs into clear, actionable insight
   <h2>Education and Training</h2>
 <!-- EDUCATION -->
   <div class="job">
-    <span class="tag">2026 • AI Courseworks</span>
-    <span class="tag">2026 • Snowflake Hands-on Essentials</span>
-    <span class="tag">2026 • dbt Fundamentals</span>
-    <span class="tag">2023 • PhD</span>
-    <span class="tag">2014 • MSc</span>
-    <span class="tag">2011 • MEcon</span>
-    <span class="tag">2007 • Math</span>
+    <span class="tag">AI</span>
+    <span class="tag">Snowflake </span>
+    <span class="tag">dbt</span>
+    <span class="tag">PhD</span>
+    <span class="tag">MSc</span>
+    <span class="tag">MEcon</span>
+    <span class="tag">BSc</span>
   </div>
   <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
   
   <ul class="hidden meta">
-    <li>2026 — AI Courseworks (University of Auckland, NZ) (COMPSCI 713 AI Fundamentals and COMPSCI 714 AI Architecture and Design)</li>
-    <li>2023 — PhD Applied Statistics (Auckland University of Technology, NZ)</li>
-    <li>2014 — MSc Financial Mathematics (University of Exeter, UK)</li>
-    <li>2011 — Master of Economics (Kasetsart University, TH)</li>
-    <li>2007 — BSc Applied Mathematics (King Mongkut’s University of Technology Thonburi, TH)</li>
+    <li>2026 — AI Courseworks (University of Auckland, NZ) (COMPSCI 713 AI Fundamentals (<strong>A-</strong>) and COMPSCI 714 AI Architecture and Design (<strong>B+</strong>))</li>
+    <li>2026 — Snowflake Hands-on Essentials</li>
+    <li>2026 — dbt Fundamentals</li>
+    <li>2023 — PhD Applied Statistics, <strong>Full Scholarship</strong> (Auckland University of Technology, NZ)</li>
+    <li>2014 — MSc Financial Mathematics, <strong>Distinction</strong> (University of Exeter, UK)</li>
+    <li>2011 — Master of Economics, <strong>GPA 3.71/4.00</strong> (Kasetsart University, TH)</li>
+    <li>2007 — BSc Applied Mathematics, <strong>80th percentile</strong> (King Mongkut’s University of Technology Thonburi, TH)</li>
   </ul>
 </div>
 
@@ -590,6 +684,115 @@ ctx.fill();
 
 ctx.strokeStyle = "#3765F6";
 ctx.stroke();
+
+
+const radarCanvas = document.getElementById("skillsRadarChart");
+
+  new Chart(radarCanvas, {
+    type: "radar",
+
+    data: {
+      labels: [
+        ["Python &", "Data Analytics"],
+        ["SQL &", "Data Engineering"],
+        ["Machine", "Learning"],
+        ["Generative AI", "& NLP"],
+        ["Data", "Visualisation"],
+        ["Automation &", "Deployment"]
+      ],
+
+      datasets: [
+        {
+          label: "Skill score",
+          data: [8, 7, 8, 8, 7, 7],
+
+          backgroundColor: "rgba(57, 235, 142, 0.55)",
+          borderColor: "#28d982",
+          borderWidth: 2,
+
+          pointBackgroundColor: "#2f69f6",
+          pointBorderColor: "#ffffff",
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }
+      ]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      layout: {
+        padding: {
+          top: 20,
+          right: 35,
+          bottom: 20,
+          left: 35
+        }
+      },
+
+      scales: {
+        r: {
+          min: 0,
+          max: 10,
+
+          ticks: {
+            display: false,
+            stepSize: 2
+          },
+
+          angleLines: {
+            display: true,
+            color: "rgba(65, 112, 240, 0.20)",
+            lineWidth: 1
+          },
+
+          grid: {
+            circular: false,
+            color: "rgba(65, 112, 240, 0.18)",
+            lineWidth: 1
+          },
+
+          pointLabels: {
+            color: "#416ff0",
+            padding: 12,
+            font: {
+              family: "'Courier New', Courier, monospace",
+              size: 13,
+              weight: "bold"
+            }
+          }
+        }
+      },
+
+      plugins: {
+        legend: {
+          display: false
+        },
+
+        tooltip: {
+          displayColors: false,
+          backgroundColor: "#24292f",
+          titleColor: "#ffffff",
+          bodyColor: "#ffffff",
+          padding: 12,
+
+          callbacks: {
+            label: function (context) {
+              return "Score: " + context.raw + " / 10";
+            }
+          }
+        }
+      },
+
+      animation: {
+        duration: 900,
+        easing: "easeOutQuart"
+      }
+    }
+  });
+
 
 </script>
 
