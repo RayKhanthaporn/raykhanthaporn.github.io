@@ -1,794 +1,607 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-NZ" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ray Khanthaporn — AI Data Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive CV for Ray Rewat Khanthaporn, an AI and data analytics professional based in Auckland, New Zealand.">
+  <meta name="theme-color" content="#26344d">
+  <title>Ray Rewat Khanthaporn | AI & Data Analytics</title>
+  <style>
+    :root {
+      --navy: #26344d;
+      --navy-2: #1c273b;
+      --blue: #315cff;
+      --blue-soft: #eaf0ff;
+      --mint: #39eb8e;
+      --paper: #ffffff;
+      --page: #e8edf5;
+      --text: #253143;
+      --muted: #657184;
+      --line: #d7dee9;
+      --card: #f7f9fc;
+      --shadow: 0 22px 60px rgba(28, 39, 59, .18);
+      --radius: 16px;
+      --sidebar-w: 290px;
+    }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #111C92;
-  color: #36454F;
-}
+    [data-theme="dark"] {
+      --paper: #121a28;
+      --page: #09111e;
+      --text: #edf3ff;
+      --muted: #aebbd0;
+      --line: #314057;
+      --card: #182335;
+      --blue-soft: #1a2b57;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .38);
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 5%, rgba(49,92,255,.18), transparent 28rem),
+        var(--page);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--mint);
+      outline-offset: 3px;
+    }
 
-.column {
-  min-width: 0;
-}
+    .page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 32px auto;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+      min-height: calc(100vh - 64px);
+      background: var(--paper);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
 
+    .sidebar {
+      position: relative;
+      z-index: 3;
+      padding: 38px 30px;
+      color: #f7faff;
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        var(--navy);
+      background-size: 26px 26px;
+    }
 
+    .avatar {
+      width: 150px;
+      aspect-ratio: 1;
+      margin: 0 auto 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #e8eef9, #bac9e2);
+      border: 6px solid rgba(255,255,255,.78);
+      box-shadow: 0 12px 30px rgba(0,0,0,.24);
+    }
+    .avatar::before {
+      content: "RK";
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -.08em;
+      color: var(--navy);
+      transform: translateX(-.08em);
+    }
+    .avatar::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -42% -10%;
+      height: 70%;
+      border-radius: 50% 50% 0 0;
+      background: rgba(49,92,255,.22);
+    }
 
-/*
-  Moves the project beneath the Technical Skills heading,
-  while retaining the right-hand column.
-*/
-.project-column {
-  padding-top: 1px;
-}
+    .sidebar h2 {
+      margin: 26px 0 13px;
+      padding-bottom: 8px;
+      font-size: 1.22rem;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.7);
+    }
+    .contact-list, .side-list, .side-nav { list-style: none; padding: 0; margin: 0; }
+    .contact-list li { margin: 0 0 15px; }
+    .contact-list strong { display: block; font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: #aebdda; }
+    .contact-list a, .contact-list span { font-size: .9rem; text-decoration: none; overflow-wrap: anywhere; }
+    .contact-list a:hover { color: var(--mint); }
+    .side-list li { position: relative; margin: 0 0 11px; padding-left: 16px; font-size: .88rem; }
+    .side-list li::before { content: "•"; position: absolute; left: 0; color: var(--mint); }
+    .side-nav { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.2); }
+    .side-nav a { display: block; padding: 7px 0; color: #dbe5f7; text-decoration: none; font-size: .88rem; }
+    .side-nav a:hover, .side-nav a.active { color: var(--mint); transform: translateX(3px); }
 
-.project-card {
-  padding: 0;
-}
+    .main { min-width: 0; padding: 48px 54px 56px; }
+    .toolbar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 18px; }
+    .icon-btn, .primary-btn, .ghost-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .icon-btn, .ghost-btn { background: var(--paper); color: var(--text); }
+    .primary-btn { background: var(--blue); border-color: var(--blue); color: #fff; text-decoration: none; }
+    .icon-btn:hover, .primary-btn:hover, .ghost-btn:hover { transform: translateY(-2px); border-color: var(--blue); }
 
-.project-card h3 {
-  margin: 0 0 22px;
-  font-size: 1.6rem;
-  line-height: 1.15;
-}
+    .hero { padding-bottom: 27px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 5px; color: var(--blue); text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 800; }
+    h1 { margin: 0; color: var(--text); font-size: clamp(2.3rem, 6vw, 4.5rem); line-height: .98; letter-spacing: -.055em; }
+    .role { margin: 11px 0 18px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.35rem); letter-spacing: .1em; text-transform: uppercase; }
+    .summary { max-width: 790px; margin: 0; color: var(--muted); font-size: 1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 21px; }
 
-.project-card p {
-  margin: 0 0 20px;
-  line-height: 1.25;
-}
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 24px 0 4px; }
+    .stat { padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+    .stat strong { display: block; color: var(--blue); font-size: 1.35rem; }
+    .stat span { color: var(--muted); font-size: .78rem; }
 
-.project-link {
-  display: inline-block;
-  color: #0000ee;
-  font-size: 1.1rem;
-}
+    .section { scroll-margin-top: 18px; padding-top: 34px; }
+    .section-title { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; color: var(--text); font-size: 1.55rem; letter-spacing: .015em; }
+    .section-title::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    .section-kicker { display: block; margin-bottom: 4px; color: var(--blue); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
 
-.github-block {
-  margin-top: 1px;
-  padding-top: 10px;
-  border-top: 1px solid #d0d7de;
-}
+    .skills-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); padding: 20px; }
+    .skill-tools { display: flex; gap: 8px; margin-bottom: 16px; }
+    .skill-search { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: var(--text); background: var(--paper); }
+    .skill-group + .skill-group { margin-top: 15px; }
+    .skill-group h3 { margin: 0 0 7px; font-size: .92rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { display: inline-flex; padding: 5px 9px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: .76rem; font-weight: 700; border: 1px solid rgba(49,92,255,.12); }
+    .tag[hidden] { display: none; }
 
-.github-link {
-  display: inline-block;
-  margin-top: 5px;
-}
+    .radar-wrap { min-height: 330px; display: grid; place-items: center; }
+    #skillsRadar { width: 100%; max-width: 380px; height: auto; }
+    .chart-note { margin: 8px 0 0; text-align: center; color: var(--muted); font-size: .75rem; }
 
-/* Stack both columns on mobile */
-@media (max-width: 700px) {
+    .project-card { display: grid; grid-template-columns: 58px 1fr auto; gap: 15px; align-items: center; }
+    .project-icon { width: 58px; height: 58px; border-radius: 14px; display: grid; place-items: center; background: var(--blue-soft); font-size: 1.6rem; }
+    .project-card h3 { margin: 0 0 5px; }
+    .project-card p { margin: 0; color: var(--muted); font-size: .9rem; }
 
-  .project-column {
-    padding-top: 0;
-  }
-}
+    .timeline { position: relative; margin-left: 6px; }
+    .timeline::before { content: ""; position: absolute; left: 8px; top: 10px; bottom: 14px; width: 2px; background: var(--line); }
+    details.timeline-item { position: relative; margin: 0 0 12px; padding: 0 0 0 38px; }
+    details.timeline-item::before {
+      content: ""; position: absolute; left: 1px; top: 19px; width: 12px; height: 12px; border: 3px solid var(--paper); border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 1px var(--blue);
+    }
+    details.timeline-item[open]::before { background: var(--mint); box-shadow: 0 0 0 1px #1aaf65; }
+    details summary { list-style: none; cursor: pointer; padding: 14px 44px 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); position: relative; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after { content: "+"; position: absolute; right: 16px; top: 12px; color: var(--blue); font-size: 1.35rem; font-weight: 400; }
+    details[open] summary::after { content: "−"; }
+    .job-title { font-weight: 800; }
+    .job-meta { display: block; color: var(--muted); font-size: .83rem; margin-top: 2px; }
+    .detail-body { margin: 0 8px; padding: 12px 16px 10px; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 12px 12px; color: var(--muted); }
+    .detail-body ul { margin: 0; padding-left: 18px; }
+    .detail-body li + li { margin-top: 5px; }
 
-.github-block {
-  margin-top: 28px;
-  padding-top: 22px;
-  border-top: 1px solid #d0d7de;
-}
+    .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .compact-details summary { min-height: 74px; }
+    .compact-details + .compact-details { margin-top: 10px; }
+    .publication a { color: var(--blue); font-weight: 700; }
 
-.github-link {
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: auto;
-  padding: 10px 16px;
-  color: #ffffff;
-  background-color: #24292f;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-}
+    .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .8rem; }
+    .mobile-menu { display: none; position: fixed; z-index: 10; left: 12px; top: 12px; background: var(--navy); color: #fff; border: 0; border-radius: 999px; padding: 10px 13px; box-shadow: var(--shadow); }
 
-.github-link:hover,
-.github-link:focus {
-  background-color: #0969da;
-  transform: translateY(-1px);
-}
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-.two-column {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
-  gap: 30px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  align-items: start;
-}
+    @media (max-width: 900px) {
+      .page-shell { width: min(100% - 20px, 760px); grid-template-columns: 1fr; margin: 10px auto; }
+      .mobile-menu { display: block; }
+      .sidebar { position: fixed; inset: 0 auto 0 0; width: min(320px, 88vw); overflow: auto; transform: translateX(-105%); transition: transform .25s ease; box-shadow: 20px 0 50px rgba(0,0,0,.35); }
+      .sidebar.open { transform: translateX(0); }
+      .main { padding: 54px 28px 42px; }
+      .skills-grid, .two-up { grid-template-columns: 1fr; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .page-shell { width: 100%; margin: 0; border-radius: 0; }
+      .main { padding: 56px 18px 34px; }
+      .toolbar { margin-right: 0; }
+      .toolbar .label { display: none; }
+      .project-card { grid-template-columns: 50px 1fr; }
+      .project-card .primary-btn { grid-column: 1 / -1; text-align: center; }
+      .quick-stats { grid-template-columns: 1fr 1fr; }
+      .footer { flex-direction: column; }
+    }
 
-.column {
-  min-width: 0;
-}
-
-@media (max-width: 700px) {
-  .two-column {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-}
-
-@media (max-width: 700px) {
-
-}
-
- 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem;
-  background: #FAFAFA;
-}
-
-h1 { margin-bottom: 5px; }
-h2 {
-  margin-top: 2rem;
-  border-bottom: 2px solid #3765F6;
-  padding-bottom: 5px;
-}
-
-
-.section-heading {
-  margin-top: 2rem;
-  margin: 0 0 28px;
-  padding-bottom: 2px solid #3765F6;
-  border-bottom: 2px solid #315cff;
-}
-
-.tag {
-  display: inline-block;
-  background: #eef2ff;
-  color: #3765F6;
-  padding: 4px 8px;
-  margin: 3px;
-  border-radius: 5px;
-  font-size: 12px;
-}
-
-.job {
-  border-left: 3px solid #3765F6;
-  padding-left: 10px;
-  margin-bottom: 15px;
-}
-
-.meta {
-  color: #666;
-  font-size: 14px;
-}
-
-.toggle-btn {
-  font-size: 12px;
-  cursor: pointer;
-  color: #3765F6;
-}
-
-.hidden {
-  display: none;
-}
-
-
-
-
-.skills-overview {
-  width: 100%;
-  margin: 10px 0 28px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.radar-card {
-  width: 100%;
-  padding: 10px;
-  background: #ffffff;
-  border: 1px solid #dfe3eb;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(31, 35, 40, 0.06);
-  box-sizing: border-box;
-}
-
-.radar-container {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  background: #f2f5ff;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-/* Ensure Chart.js controls the canvas dimensions */
-.radar-container canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-}
-
-.chart-note {
-  margin: 10px 0 0;
-  color: #667085;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  .radar-container {
-    height: 360px;
-  }
-}
-
-@media (max-width: 420px) {
-  .radar-card {
-    padding: 6px;
-  }
-
-  .radar-container {
-    height: 330px;
-  }
-}
-
-</style>
+    @media print {
+      :root { --paper: #fff; --text: #1d2737; --muted: #536073; --line: #cdd4df; --card: #fff; }
+      @page { size: A4; margin: 10mm; }
+      body { background: #fff; font-size: 9pt; }
+      .page-shell { width: 100%; margin: 0; display: grid; grid-template-columns: 62mm 1fr; box-shadow: none; border-radius: 0; overflow: visible; }
+      .sidebar { padding: 9mm 7mm; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .main { padding: 9mm 8mm; }
+      .toolbar, .mobile-menu, .side-nav, .skill-tools { display: none !important; }
+      .avatar { width: 35mm; }
+      h1 { font-size: 28pt; }
+      .section { padding-top: 5mm; break-inside: avoid; }
+      .section-title { margin-bottom: 3mm; }
+      .quick-stats { gap: 2mm; }
+      .stat, .card { padding: 3mm; }
+      details { break-inside: avoid; }
+      details .detail-body { display: block !important; }
+      details summary::after { display: none; }
+      .reveal { opacity: 1; transform: none; }
+      .footer { margin-top: 5mm; }
+      a { text-decoration: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
+  </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
-
 <body>
+  <button class="mobile-menu" id="menuButton" type="button" aria-controls="sidebar" aria-expanded="false">☰ Profile</button>
 
-<div class="container">
+  <div class="page-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Contact details and profile navigation">
+      <div class="avatar" role="img" aria-label="Ray Khanthaporn initials"></div>
 
-<!-- HEADER -->
-<h1>
-  (RAY) Rewat Khanthaporn
-  <span class="header-links">
-    <a href="mailto:raysuge044@hotmail.com">📧 Email</a>
-  </span>
-</h1>
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li><strong>Location</strong><span>Auckland, New Zealand</span></li>
+        <li><strong>Email</strong><a href="mailto:raysuge044@hotmail.com">raysuge044@hotmail.com</a></li>
+        <li><strong>LinkedIn</strong><a href="https://linkedin.com/in/ray-rewat-khanthaporn" target="_blank" rel="noopener noreferrer">ray-rewat-khanthaporn ↗</a></li>
+        <li><strong>GitHub</strong><a href="https://github.com/RayKhanthaporn" target="_blank" rel="noopener noreferrer">RayKhanthaporn ↗</a></li>
+      </ul>
 
+      <h2>Education</h2>
+      <ul class="side-list">
+        <li><strong>PhD Applied Statistics</strong><br>2023 · AUT · Full Scholarship</li>
+        <li><strong>MSc Financial Mathematics</strong><br>2014 · Exeter · Distinction</li>
+        <li><strong>Master of Economics</strong><br>2011 · Kasetsart</li>
+        <li><strong>BSc Applied Mathematics</strong><br>2007 · KMUTT</li>
+      </ul>
 
-<div class="meta">
-  Auckland, NZ • AI Data Analytics • Gen AI • AI Agents • Decision Intelligence • Data Science • ML Optimisation •
-  <a href="https://linkedin.com/in/ray-rewat-khanthaporn" target="_blank" rel="noopener noreferrer">
-    LinkedIn
-  </a>
-</div>
-  
-<p>
-10+ years AI-focused data analytics professional specialising in machine learning and AI/NLP, with a strong foundation in analytics engineering and workflow automation.
-Proven capability in designing scalable data solutions, leveraging Gen AI and AI agents, and applying predictive modelling and advanced statistical methods. 
-Skilled in translating complex analytical outputs into clear, actionable insights for business decision-making.
-</p>
+      <h2>Expertise</h2>
+      <ul class="side-list">
+        <li>Generative AI & AI agents</li>
+        <li>Machine learning & NLP</li>
+        <li>Decision intelligence</li>
+        <li>Analytics engineering</li>
+        <li>Predictive modelling</li>
+        <li>Workflow automation</li>
+      </ul>
 
+      <nav class="side-nav" aria-label="CV sections">
+        <a href="#profile">Profile</a>
+        <a href="#skills">Technical skills</a>
+        <a href="#project">Featured project</a>
+        <a href="#experience">Experience</a>
+        <a href="#speaking">Speaking & publications</a>
+        <a href="#training">Training</a>
+      </nav>
+    </aside>
 
-
-
-<h2 class="section-heading">Technical Skills</h2>
-<main class="two-column">
-  <!-- Left column -->
-  <section class="column skills-column">
- 
-    <div class="skills-tags">
-
-      <div class="skill-block">
-      <div class="skill-title">Priority AI Skills</div>
-      <div>
-        <span class="tag">GenAI</span>
-        <span class="tag">AI Agents</span>
-        <span class="tag">ML</span>
-        <span class="tag">AI/NLP</span>
-        <span class="tag">Prompt Engineering</span>
-        <span class="tag">Retrieval-Augmented Generation (RAG)</span>
-        <span class="tag">Model Fine-Tuning</span>
-        <span class="tag">Automation</span>
-        <span class="tag">Predictive Modelling</span>
+    <main class="main">
+      <div class="toolbar" aria-label="CV controls">
+        <button class="icon-btn" id="expandButton" type="button" title="Expand or collapse all details"><span aria-hidden="true">＋</span> <span class="label">Expand all</span></button>
+        <button class="icon-btn" id="themeButton" type="button" title="Switch colour theme"><span aria-hidden="true">◐</span> <span class="label">Theme</span></button>
+        <button class="icon-btn" id="printButton" type="button" title="Print or save as PDF"><span aria-hidden="true">⎙</span> <span class="label">Print</span></button>
       </div>
-    </div>
-    
-    <div class="skill-block">
-      <div class="skill-title">AI &amp; Cloud Platforms</div>
-      <div>
-        <span class="tag">Microsoft Foundry</span>
-        <span class="tag">Azure AI Document Intelligence</span>
-      </div>
-    </div>
-    
-    <div class="skill-block">
-      <div class="skill-title">Programming</div>
-      <div>
-        <span class="tag">Python</span>
-        <span class="tag">R</span>
-        <span class="tag">SQL</span>
-        <span class="tag">SAS Enterprise Miner</span>
-        <span class="tag">MATLAB</span>
-        <span class="tag">VBA</span>
-      </div>
-    </div>
-    
-    <div class="skill-block">
-      <div class="skill-title">Python Libraries</div>
-      <div>
-        <span class="tag">pandas</span>
-        <span class="tag">NumPy</span>
-        <span class="tag">scikit-learn</span>
-        <span class="tag">PyTorch</span>
-        <span class="tag">Transformers</span>
-        <span class="tag">Matplotlib</span>
-      </div>
-    </div>
-    
-    <div class="skill-block">
-      <div class="skill-title">Data &amp; Development Platforms</div>
-      <div>
-        <span class="tag">Snowflake</span>
-        <span class="tag">dbt</span>
-        <span class="tag">Qlik</span>
-        <span class="tag">Jupyter</span>
-        <span class="tag">VS Code</span>
-        <span class="tag">GitHub</span>
-      </div>
-    </div>
 
+      <header class="hero reveal" id="profile">
+        <p class="eyebrow">Curriculum Vitae · Auckland, NZ</p>
+        <h1>Ray Rewat<br>Khanthaporn</h1>
+        <p class="role">AI · Data Analytics · Decision Intelligence</p>
+        <p class="summary">
+          AI-focused data analytics professional with 10+ years of experience spanning machine learning, AI/NLP, analytics engineering and workflow automation. Designs scalable data solutions, applies predictive modelling and advanced statistical methods, and translates complex analysis into clear business decisions.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="mailto:raysuge044@hotmail.com">Email Ray</a>
+          <a class="ghost-btn" href="https://github.com/RayKhanthaporn" target="_blank" rel="noopener noreferrer">View GitHub</a>
+          <a class="ghost-btn" href="https://linkedin.com/in/ray-rewat-khanthaporn" target="_blank" rel="noopener noreferrer">View LinkedIn</a>
+        </div>
+        <div class="quick-stats" aria-label="Career highlights">
+          <div class="stat"><strong>10+</strong><span>years across data, finance & technology</span></div>
+          <div class="stat"><strong>PhD</strong><span>Applied Statistics</span></div>
+          <div class="stat"><strong>2</strong><span>selected publications</span></div>
+          <div class="stat"><strong>2</strong><span>2024 speaking engagements</span></div>
+        </div>
+      </header>
 
-      <div class="github-block">
-            <a
-              href="https://github.com/RayKhanthaporn"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="github-link"
-            >
-              Visit my GitHub
-            </a>
-
-            <a
-              href="https://linkedin.com/in/ray-rewat-khanthaporn"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="github-link"
-            >
-              Visit my Linkedln
-            </a>
+      <section class="section reveal" id="skills">
+        <span class="section-kicker">Capabilities</span>
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="card">
+            <div class="skill-tools">
+              <label for="skillSearch" class="visually-hidden">Filter skills</label>
+              <input class="skill-search" id="skillSearch" type="search" placeholder="Filter skills…" autocomplete="off">
+            </div>
+            <div class="skill-group"><h3>Priority AI skills</h3><div class="tags">
+              <span class="tag">GenAI</span><span class="tag">AI Agents</span><span class="tag">Machine Learning</span><span class="tag">AI/NLP</span><span class="tag">Prompt Engineering</span><span class="tag">RAG</span><span class="tag">Model Fine-Tuning</span><span class="tag">Automation</span><span class="tag">Predictive Modelling</span>
+            </div></div>
+            <div class="skill-group"><h3>AI & cloud platforms</h3><div class="tags">
+              <span class="tag">Microsoft Foundry</span><span class="tag">Azure AI Document Intelligence</span>
+            </div></div>
+            <div class="skill-group"><h3>Programming</h3><div class="tags">
+              <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">SAS Enterprise Miner</span><span class="tag">MATLAB</span><span class="tag">VBA</span>
+            </div></div>
+            <div class="skill-group"><h3>Python libraries</h3><div class="tags">
+              <span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span><span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">Matplotlib</span>
+            </div></div>
+            <div class="skill-group"><h3>Data & development platforms</h3><div class="tags">
+              <span class="tag">Snowflake</span><span class="tag">dbt</span><span class="tag">Qlik</span><span class="tag">Jupyter</span><span class="tag">VS Code</span><span class="tag">GitHub</span>
+            </div></div>
           </div>
 
-    </div>
-
-  </section>
-
-  <!-- Right column -->
-  <aside class="column project-column">
-  <div class="skill-title">SKILLS OVERVIEW</div>
-
-    <section class="skills-overview">
-      <div class="radar-card">
-
-        <div class="radar-container">
-          <canvas
-            id="skillsRadarChart"
-            aria-label="Radar chart showing data analytics and AI skills"
-          ></canvas>
+          <div class="card">
+            <h3 style="margin:0">Skills overview</h3>
+            <div class="radar-wrap"><canvas id="skillsRadar" width="380" height="330" aria-label="Radar chart of portfolio-based skill scores" role="img"></canvas></div>
+            <p class="chart-note">Portfolio-based self-assessment · scored out of 10</p>
+          </div>
         </div>
+      </section>
 
-        <p class="chart-note">
-          Portfolio-based assessment scored out of 10
-        </p>
+      <section class="section reveal" id="project">
+        <span class="section-kicker">Portfolio</span>
+        <h2 class="section-title">Featured Project</h2>
+        <article class="card project-card">
+          <div class="project-icon" aria-hidden="true">⌁</div>
+          <div>
+            <h3>AI Agent — Contract Reviewer</h3>
+            <p>AI-driven agreement review, clause identification, summarisation and potential-risk flagging. Built with AI, NLP, JavaScript and GitHub Pages.</p>
+          </div>
+          <a class="primary-btn" href="https://raykhanthaporn.github.io/contract-agent/" target="_blank" rel="noopener noreferrer">Launch project ↗</a>
+        </article>
+      </section>
 
-      </div>
-    </section>
+      <section class="section reveal" id="experience">
+        <span class="section-kicker">Career timeline</span>
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <details class="timeline-item" open>
+            <summary><span class="job-title">Data Specialist</span><span class="job-meta">Health New Zealand – Te Whatu Ora · Audit & Assurance Group · 2025–Present</span></summary>
+            <div class="detail-body"><ul><li>Lead complex analytics and audit projects.</li><li>Build scalable Snowflake and R pipelines.</li><li>Develop automated validation frameworks.</li><li>Present decision-ready insights to senior stakeholders.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Data Analyst</span><span class="job-meta">Health New Zealand – Te Whatu Ora · Audit & Assurance Group · Sep 2023–2025</span></summary>
+            <div class="detail-body"><ul><li>Built dashboards and data-validation logic.</li><li>Delivered audit analytics insights.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Unit Pricing Analyst</span><span class="job-meta">APEX Group / MMC · Dec 2022–Sep 2023</span></summary>
+            <div class="detail-body"><ul><li>Prepared and evaluated daily unit prices for client investment funds using reconciliations, analytical checks and issue investigation.</li><li>Investigated exceptions and cleared differences with advanced Excel and structured analytical workflows.</li><li>Documented improvements to reduce errors and cycle time through macros and automation.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Adjunct Lecturer</span><span class="job-meta">Massey University · 2022</span></summary>
+            <div class="detail-body"><ul><li>Delivered postgraduate Data Mining and Multivariate Analysis courses.</li><li>Taught logistic regression, trees, ensembles, Naïve Bayes, neural networks, SVMs, PCA, LDA, clustering and association analysis.</li><li>Mentored master’s students on analytics projects.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Tutorial Lecturer</span><span class="job-meta">Auckland University of Technology · Sep 2018–Feb 2022</span></summary>
+            <div class="detail-body"><ul><li>Taught applied statistics and mathematics tutorials.</li><li>Assessed coursework and examinations.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Researcher</span><span class="job-meta">Fiscal Policy Research Institute Foundation & Thailand Development Research Institute · Feb 2015–Sep 2019</span></summary>
+            <div class="detail-body"><ul><li>Conducted quantitative and qualitative policy research.</li><li>Integrated statistical analysis with market, industry and stakeholder evidence.</li><li>Developed technical reports and led fieldwork, interviews, expert hearings and cross-functional coordination.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Quantitative Analyst</span><span class="job-meta">Thai Bond Market Association · Nov 2014–Jan 2015 & Oct 2015–May 2017</span></summary>
+            <div class="detail-body"><ul><li>Provided daily bond mark-to-market prices and developed pricing methods for new bonds and structured products with VBA and MATLAB.</li><li>Researched financial markets, pricing conventions, money-market development and data services.</li><li>Delivered bond-pricing workshops for market participants.</li></ul></div>
+          </details>
+          <details class="timeline-item">
+            <summary><span class="job-title">Software Developer</span><span class="job-meta">DST Worldwide Services · Kasikorn Bank · AIA Thailand · Dec 2008–Nov 2012</span></summary>
+            <div class="detail-body"><ul><li>Designed, developed and maintained enterprise banking and financial applications using COBOL, VSAM and SQL.</li><li>Produced technical specifications, maintainable code and unit tests.</li></ul></div>
+          </details>
+        </div>
+      </section>
 
+      <section class="section reveal" id="speaking">
+        <span class="section-kicker">Knowledge sharing</span>
+        <h2 class="section-title">Speaking & Publications</h2>
+        <div class="two-up">
+          <div class="card">
+            <h3 style="margin-top:0">Public speaking</h3>
+            <details class="compact-details" open>
+              <summary><span class="job-title">IIA NZ Conference 2024</span><span class="job-meta">Museum of New Zealand Te Papa · Wellington</span></summary>
+              <div class="detail-body">Harnessing Data Analytics — Building Resilience for Internal Auditors in Turbulent Times.</div>
+            </details>
+            <details class="compact-details">
+              <summary><span class="job-title">IIA Education Day 2024</span><span class="job-meta">KPMG · Auckland</span></summary>
+              <div class="detail-body">Data Analytics and AI.</div>
+            </details>
+          </div>
+          <div class="card publication">
+            <h3 style="margin-top:0">Selected publications</h3>
+            <details class="compact-details" open>
+              <summary><span class="job-title">Bayesian Estimation of R-Vine Copula…</span><span class="job-meta">Khanthaporn & Wichitaksorn · 2025</span></summary>
+              <div class="detail-body"><a href="https://doi.org/10.3390/math13233886" target="_blank" rel="noopener noreferrer">View publication ↗</a><br>MCMC and machine-learning comparison with Gaussian-mixture GARCH margins.</div>
+            </details>
+            <details class="compact-details">
+              <summary><span class="job-title">Modelling COVID-19 Stock Returns…</span><span class="job-meta">Khanthaporn & Wichitaksorn · 2023</span></summary>
+              <div class="detail-body"><a href="https://doi.org/10.1080/00036846.2022.2141448" target="_blank" rel="noopener noreferrer">View publication ↗</a><br>Asymmetric GARCH-ICAPM with mixture and heavy-tailed distributions.</div>
+            </details>
+          </div>
+        </div>
+      </section>
 
+      <section class="section reveal" id="training">
+        <span class="section-kicker">Continuous learning</span>
+        <h2 class="section-title">Education & Training</h2>
+        <div class="card">
+          <div class="tags" style="margin-bottom:14px"><span class="tag">AI</span><span class="tag">Snowflake</span><span class="tag">dbt</span><span class="tag">PhD</span><span class="tag">MSc</span><span class="tag">MEcon</span><span class="tag">BSc</span></div>
+          <details class="compact-details">
+            <summary><span class="job-title">Qualifications and recent training</span><span class="job-meta">Select to view the complete list</span></summary>
+            <div class="detail-body"><ul>
+              <li>2026 — COMPSCI 713 AI Fundamentals and COMPSCI 714 AI Architecture and Design, University of Auckland.</li>
+              <li>2026 — Snowflake Hands-on Essentials.</li>
+              <li>2026 — dbt Fundamentals.</li>
+              <li>2023 — PhD Applied Statistics, full scholarship, Auckland University of Technology.</li>
+              <li>2014 — MSc Financial Mathematics, Distinction, University of Exeter.</li>
+              <li>2011 — Master of Economics, GPA 3.71/4.00, Kasetsart University.</li>
+              <li>2007 — BSc Applied Mathematics, 80th percentile, King Mongkut’s University of Technology Thonburi.</li>
+            </ul></div>
+          </details>
+        </div>
+      </section>
 
-
-
-
-    <div class="card project-card">
-      <div class="card-body">
-
-        <div class="skill-title">📄 AI Agent – Contract Reviewer</div>
-        <p class="meta">
-          AI-driven contract analysis application designed to assist users
-          with reviewing agreements, identifying important clauses,
-          summarising content, and flagging potential risks.
-        </p>
-
-        <p class="meta">
-          <strong>Technologies:</strong>
-          AI, NLP, JavaScript, GitHub Pages
-        </p>
-
-        <a 
-          href="https://raykhanthaporn.github.io/contract-agent/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="project-link"
-        >
-          🔗 Launch Project
-        </a>
-           
-      </div>
-    </div>
-
-
-
-  </aside>
-
-</main>
- 
-
-
-<h2>Public Speaking</h2>
-
-  <div class="job">
-      <!-- Tags (same pattern as Education) -->
-      <span class="tag">Keynote Speaker in Conference — Data Analytics</span>
-      <span class="tag">Speaker — Education Day in Data Analytics and AI</span>
-
-      <!-- Toggle -->
-      <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-      <!-- Details -->
-      <ul class="hidden meta">
-        <li>
-          <strong>IIA NZ Conference 2024</strong> — Museum of New Zealand Te Papa, Wellington<br>
-          Topic: Harnessing Data Analytics — Building Resilience for Internal Auditors in Turbulent Times
-        </li>
-        <li>
-          <strong>IIA Education Day 2024</strong> — KPMG Auckland<br>
-          Topic: Data Analytics and AI
-        </li>
-      </ul>
-</div>
-
-
-<h2>Selected Publication</h2>
-
-<div class="job">
-
-  <!-- Summary tags -->
-  <div>
-    <span class="tag">Machine Learning Opitisation + Bayesian</span>
-    <span class="tag">Time Serise + COVID Markets</span>
-  </div>
-  <!-- Toggle -->
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <!-- Details -->
-  <ul class="hidden meta">
-  <li>
-    <strong>Khanthaporn, R., & Wichitaksorn, N. (2025)</strong><br>
-    <a href="https://doi.org/10.3390/math13233886" target="_blank" rel="noopener noreferrer">
-      Bayesian Estimation of R-Vine Copula with Gaussian-Mixture GARCH Margins:
-      An MCMC and Machine Learning Comparison
-    </a>
-  </li>
-
-    <li>
-      <strong>Khanthaporn, R., & Wichitaksorn, N. (2023)</strong><br>
-      <a href="https://doi.org/10.1080/00036846.2022.2141448" target="_blank" rel="noopener noreferrer">
-        Modelling and Forecasting COVID-19 Stock Returns Using Asymmetric
-        GARCH-ICAPM with Mixture and Heavy-Tailed Distributions
-      </a>
-    </li>
-  </ul>
-
-</div>
-
-<!-- EXPERIENCE -->
-<h2>Experience</h2>
-
-<div class="job">
-  <div class="job-heading">
-    <strong>Data Specialist</strong>
-    <span class="meta">
-      Health NZ - Te Whatu Ora • Audit &amp; Assurance Group • 2025–Present
-    </span>
-  </div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Lead complex analytics and audit projects</li>
-    <li>Built Snowflake + R scalable pipelines</li>
-    <li>Developed automated validation frameworks</li>
-    <li>Presented insights to senior stakeholders</li>
-  </ul>
-</div>
-
-<div class="job">
-  <div class="job-heading">
-  <strong>Data Analyst</strong>
-  <span class="meta">
-    Health NZ - Te Whatu Ora • Audit & Assurance Group • 09/2023–2025
-  </span>
+      <footer class="footer">
+        <span>© <span id="year"></span> Ray Rewat Khanthaporn</span>
+        <span>Interactive CV · Accessible · Print-ready</span>
+      </footer>
+    </main>
   </div>
 
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+  <style>.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const sidebar = document.getElementById('sidebar');
+      const menuButton = document.getElementById('menuButton');
+      const themeButton = document.getElementById('themeButton');
+      const expandButton = document.getElementById('expandButton');
+      const printButton = document.getElementById('printButton');
+      const details = [...document.querySelectorAll('details')];
+      const tags = [...document.querySelectorAll('.tag')];
+      const search = document.getElementById('skillSearch');
+      let expanded = false;
 
-  <ul class="hidden">
-    <li>Built dashboards and data validation logic</li>
-    <li>Delivered audit analytics insights</li>
-  </ul>
-</div>
+      document.getElementById('year').textContent = new Date().getFullYear();
 
+      menuButton.addEventListener('click', () => {
+        const isOpen = sidebar.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        menuButton.textContent = isOpen ? '× Close' : '☰ Profile';
+      });
+      document.querySelectorAll('.side-nav a').forEach(link => link.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = '☰ Profile';
+      }));
 
-<div class="job">
-    <div class="job-heading">
-  <strong>Unit Pricing Analyst</strong>
-  <span class="meta">
-    APEX Group / MMC • 12/2022–09/2023
-  </span>
-  </div>
+      const storedTheme = localStorage.getItem('cv-theme');
+      if (storedTheme) root.dataset.theme = storedTheme;
+      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme = 'dark';
+      themeButton.addEventListener('click', () => {
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('cv-theme', root.dataset.theme);
+        drawRadar();
+      });
 
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+      expandButton.addEventListener('click', () => {
+        expanded = !expanded;
+        details.forEach(item => item.open = expanded);
+        expandButton.querySelector('.label').textContent = expanded ? 'Collapse all' : 'Expand all';
+        expandButton.querySelector('[aria-hidden]').textContent = expanded ? '−' : '＋';
+      });
+      const printState = new Map();
+      window.addEventListener('beforeprint', () => {
+        details.forEach(item => { printState.set(item, item.open); item.open = true; });
+      });
+      window.addEventListener('afterprint', () => {
+        details.forEach(item => item.open = printState.get(item) ?? item.open);
+        printState.clear();
+      });
+      printButton.addEventListener('click', () => window.print());
 
-  <ul class="hidden">
-    <li>Prepared and evaluated daily unit prices for client investment funds, applying reconciliation, analytical checks and issue investigation to support accurate financial reporting</li>
-    <li>Reviewed daily reconciliations, investigated exceptions and cleared differences using advanced Excel and structured analytical workflows</li>
-    <li>Identified and documented process improvements to reduce errors and cycle time using Excel macros and automation techniques</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <div class="job-heading">
-    <strong>Adjunct Lecturer</strong>
-    <span class="meta">    Massey University • 2022  </span>
-  </div>
+      search.addEventListener('input', event => {
+        const term = event.target.value.trim().toLowerCase();
+        tags.forEach(tag => tag.hidden = term && !tag.textContent.toLowerCase().includes(term));
+        document.querySelectorAll('.skill-group').forEach(group => {
+          const hasVisible = [...group.querySelectorAll('.tag')].some(tag => !tag.hidden);
+          group.hidden = !hasVisible;
+        });
+      });
 
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
+      const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: .08 }) : null;
+      document.querySelectorAll('.reveal').forEach(el => observer ? observer.observe(el) : el.classList.add('visible'));
 
-  <ul class="hidden">
-    <li>Delivered postgraduate Data Mining and Multivariate Analysis courses</li>
-    <li>Taught machine learning & statistical modelling including logistic regression, decision trees, ensemble methods, Naïve Bayes, neural networks, SVMs, PCA, LDA, clustering and association analysis</li>
-    <li>Mentored master students on analytics projects</li>
-  </ul>
-</div>
-
-<div class="job">
-  <div class="job-heading">
-    <strong>Tutorial Lecturer</strong>
-    <span class="meta">  Auckland University of Technology • 09/2018 – 02/2022  </span>
-  </div>
-
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Taught applied statistics and mathematics tutorials</li>
-    <li>Marked coursework and examinations</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <div class="job-heading">
-    <strong>Researcher</strong>
-    <span class="meta"> Fiscal Policy Research Institute Foundation, Ministry of Finance, Thailand  </span>
-    <span class="meta"> | Thailand Development Research Institute  </span>
-    <span class="meta"> • 02/2015–09/2019  </span>
-  </div>
-
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Conducted quantitative and qualitative policy research</li>
-    <li>Integrating statistical analysis with market, industry and stakeholder insights</li>
-    <li>Developed technical reports outlining research scope</li>
-    <li>Led fieldwork, stakeholder interviews, expert hearings and cross-functional coordination to support evidence-based recommendations</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <div class="job-heading">
-    <strong>Quantitative Analyst</strong>
-    <span class="meta"> Thai Bond Market Association • 11/2014–01/2015 | 10/2015–05/2017 </span>
-  </div>
-
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Provided daily Thai bond mark-to-market prices and developed methodologies for pricing new bonds and structured products using VBA Excel and MATLAB</li>
-    <li>Conducted quantitative research on financial markets, bond pricing conventions, money market development and data services</li>
-    <li>Delivered bond pricing analysis workshops for market participants, translating technical pricing methodologies into practical guidance</li>
-  </ul>
-</div>
-  
-<div class="job">
-  <div class="job-heading">
-    <strong>Software Developer</strong>
-    <span class="meta"> DST Worldwide Services | Kasikorn Bank | AIA Thailand • 12/2008-11/2012</span>
-  </div>
-
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-
-  <ul class="hidden">
-    <li>Designed, developed and maintained enterprise applications using COBOL, VSAM and SQL in banking and financial systems</li>
-    <li>Produced technical specifications, wrote maintainable code and completed unit testing</li>
-  </ul>
-</div>
-
-
-  <h2>Education and Training</h2>
-<!-- EDUCATION -->
-  <div class="job">
-    <span class="tag">AI</span>
-    <span class="tag">Snowflake </span>
-    <span class="tag">dbt</span>
-    <span class="tag">PhD</span>
-    <span class="tag">MSc</span>
-    <span class="tag">MEcon</span>
-    <span class="tag">BSc</span>
-  </div>
-  <div class="toggle-btn" onclick="toggle(this)">View details ↓</div>
-  
-  <ul class="hidden meta">
-    <li>2026 — AI Courseworks (University of Auckland, NZ) (COMPSCI 713 AI Fundamentals (<strong>A-</strong>) and COMPSCI 714 AI Architecture and Design (<strong>B+</strong>))</li>
-    <li>2026 — Snowflake Hands-on Essentials</li>
-    <li>2026 — dbt Fundamentals</li>
-    <li>2023 — PhD Applied Statistics, <strong>Full Scholarship</strong> (Auckland University of Technology, NZ)</li>
-    <li>2014 — MSc Financial Mathematics, <strong>Distinction</strong> (University of Exeter, UK)</li>
-    <li>2011 — Master of Economics, <strong>GPA 3.71/4.00</strong> (Kasetsart University, TH)</li>
-    <li>2007 — BSc Applied Mathematics, <strong>80th percentile</strong> (King Mongkut’s University of Technology Thonburi, TH)</li>
-  </ul>
-</div>
-
-
-
-
-  
-<!-- SCRIPT -->
-<script>
-  function toggle(button) {
-    const detailElement = button.nextElementSibling;
-
-    if (!detailElement) {
-      return;
-    }
-
-    const isHidden = detailElement.classList.contains("hidden");
-
-    detailElement.classList.toggle("hidden");
-
-    button.textContent = isHidden
-      ? "Hide details ↑"
-      : "View details ↓";
-  }
-
-  window.addEventListener("load", function () {
-    const radarCanvas = document.getElementById("skillsRadarChart");
-
-    if (!radarCanvas) {
-      console.error(
-        'Radar chart error: canvas "#skillsRadarChart" was not found.'
-      );
-      return;
-    }
-
-    if (typeof Chart === "undefined") {
-      console.error(
-        "Radar chart error: Chart.js did not load."
-      );
-
-      const container = radarCanvas.parentElement;
-      container.innerHTML =
-        '<p style="padding:20px;color:#b42318;">' +
-        "The skills chart could not load. Check the Chart.js script element." +
-        "</p>";
-
-      return;
-    }
-
-    new Chart(radarCanvas, {
-      type: "radar",
-
-      data: {
-        labels: [
-          ["Python &", "Data Analytics"],
-          ["SQL &", "Data Engineering"],
-          ["Machine", "Learning"],
-          ["Generative AI", "& NLP"],
-          ["Data", "Visualisation"],
-          ["Automation &", "Deployment"]
-        ],
-
-        datasets: [
-          {
-            label: "Skill score",
-
-            data: [9.5, 7, 9.5, 6, 8, 7],
-
-            backgroundColor: "rgba(57, 235, 142, 0.45)",
-            borderColor: "#28d982",
-            borderWidth: 2,
-
-            pointBackgroundColor: "#3765f6",
-            pointBorderColor: "#ffffff",
-            pointBorderWidth: 2,
-            pointRadius: 4,
-            pointHoverRadius: 6,
-
-            fill: true
-          }
-        ]
-      },
-
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-
-        layout: {
-          padding: {
-            top: 12,
-            right: 12,
-            bottom: 12,
-            left: 12
-          }
-        },
-
-        scales: {
-          r: {
-            min: 0,
-            max: 10,
-            beginAtZero: true,
-
-            ticks: {
-              display: false,
-              stepSize: 2
-            },
-
-            angleLines: {
-              display: true,
-              color: "rgba(55, 101, 246, 0.25)",
-              lineWidth: 1
-            },
-
-            grid: {
-              circular: false,
-              color: "rgba(55, 101, 246, 0.20)",
-              lineWidth: 1
-            },
-
-            pointLabels: {
-              display: true,
-              color: "#3765f6",
-              padding: 7,
-
-              font: {
-                family: "Arial, sans-serif",
-                size: 10,
-                weight: "600"
-              }
+      const sections = [...document.querySelectorAll('main [id]')];
+      const navLinks = [...document.querySelectorAll('.side-nav a')];
+      if ('IntersectionObserver' in window) {
+        const navObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
             }
-          }
-        },
-
-        plugins: {
-          legend: {
-            display: false
-          },
-
-          tooltip: {
-            enabled: true,
-            displayColors: false,
-            backgroundColor: "#24292f",
-            titleColor: "#ffffff",
-            bodyColor: "#ffffff",
-            padding: 10,
-
-            callbacks: {
-              label: function (context) {
-                return "Score: " + context.raw + " / 10";
-              }
-            }
-          }
-        },
-
-        animation: {
-          duration: 900,
-          easing: "easeOutQuart"
-        }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(section => navObserver.observe(section));
       }
-    });
-  });
-</script>
 
+      function drawRadar() {
+        const canvas = document.getElementById('skillsRadar');
+        const ctx = canvas.getContext('2d');
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const cssW = canvas.clientWidth || 380;
+        const cssH = 330;
+        canvas.width = cssW * dpr;
+        canvas.height = cssH * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const w = cssW, h = cssH, cx = w / 2, cy = h / 2 + 4;
+        const radius = Math.min(w * .31, 112);
+        const labels = ['Python & Analytics', 'SQL & Engineering', 'Machine Learning', 'Generative AI & NLP', 'Visualisation', 'Automation & Deployment'];
+        const values = [9.5, 7, 9.5, 6, 8, 7];
+        const count = labels.length;
+        const dark = root.dataset.theme === 'dark';
+        const line = dark ? 'rgba(174,187,208,.32)' : 'rgba(49,92,255,.2)';
+        const text = dark ? '#dce6f7' : '#315cff';
+        ctx.clearRect(0, 0, w, h);
+        const point = (i, r) => {
+          const a = -Math.PI / 2 + i * Math.PI * 2 / count;
+          return [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+        };
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = line;
+        for (let ring = 1; ring <= 5; ring++) {
+          ctx.beginPath();
+          for (let i = 0; i < count; i++) {
+            const [x, y] = point(i, radius * ring / 5);
+            i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+          }
+          ctx.closePath(); ctx.stroke();
+        }
+        for (let i = 0; i < count; i++) {
+          const [x, y] = point(i, radius);
+          ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x, y); ctx.stroke();
+        }
+        ctx.beginPath();
+        values.forEach((value, i) => {
+          const [x, y] = point(i, radius * value / 10);
+          i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        });
+        ctx.closePath(); ctx.fillStyle = 'rgba(57,235,142,.32)'; ctx.fill();
+        ctx.strokeStyle = '#28d982'; ctx.lineWidth = 2.5; ctx.stroke();
+        values.forEach((value, i) => {
+          const [x, y] = point(i, radius * value / 10);
+          ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = '#315cff'; ctx.fill();
+          ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+        });
+        ctx.fillStyle = text; ctx.font = '600 11px system-ui, sans-serif'; ctx.textBaseline = 'middle';
+        labels.forEach((label, i) => {
+          const [x, y] = point(i, radius + 28);
+          ctx.textAlign = Math.abs(x - cx) < 8 ? 'center' : (x > cx ? 'left' : 'right');
+          const words = label.split(' ');
+          const lines = label.length > 17 ? [words.slice(0, Math.ceil(words.length / 2)).join(' '), words.slice(Math.ceil(words.length / 2)).join(' ')] : [label];
+          lines.forEach((lineText, idx) => ctx.fillText(lineText, x, y + (idx - (lines.length - 1) / 2) * 13));
+        });
+      }
+      drawRadar();
+      let resizeTimer;
+      window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawRadar, 100); });
+    })();
+  </script>
 </body>
 </html>
