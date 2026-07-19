@@ -551,8 +551,9 @@
         canvas.height = cssH * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         const w = cssW, h = cssH, cx = w / 2, cy = h / 2 + 4;
-        const radius = Math.min(w * .31, 112);
-        const labels = ['Python & Analytics', 'SQL & Engineering', 'Machine Learning', 'Generative AI & NLP', 'Visualisation', 'Automation & Deployment'];
+        const radius = Math.min(w * .28, 112);
+        const labels = ['Python & Analytics', 'SQL & \n Engineering', 'Machine \n Learning', 'Generative AI & NLP', 'Visualisation', 'Automation & Deployment'];
+        const labelOffset = 10;
         const values = [9.5, 7, 9.5, 6, 8, 7];
         const count = labels.length;
         const dark = root.dataset.theme === 'dark';
@@ -589,14 +590,33 @@
           ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = '#315cff'; ctx.fill();
           ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
         });
-        ctx.fillStyle = text; ctx.font = '600 11px system-ui, sans-serif'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = text; ctx.font = '600 9px system-ui, sans-serif'; ctx.textBaseline = 'middle';
+
         labels.forEach((label, i) => {
-          const [x, y] = point(i, radius + 28);
-          ctx.textAlign = Math.abs(x - cx) < 8 ? 'center' : (x > cx ? 'left' : 'right');
+          const [x, y] = point(i, radius + labelOffset);
+
+          ctx.textAlign =
+            Math.abs(x - cx) < 8
+              ? 'center'
+              : (x > cx ? 'left' : 'right');
+
           const words = label.split(' ');
-          const lines = label.length > 17 ? [words.slice(0, Math.ceil(words.length / 2)).join(' '), words.slice(Math.ceil(words.length / 2)).join(' ')] : [label];
-          lines.forEach((lineText, idx) => ctx.fillText(lineText, x, y + (idx - (lines.length - 1) / 2) * 13));
+          const lines = label.length > 17
+            ? [
+                words.slice(0, Math.ceil(words.length / 2)).join(' '),
+                words.slice(Math.ceil(words.length / 2)).join(' ')
+              ]
+            : [label];
+
+          lines.forEach((lineText, idx) => {
+            ctx.fillText(
+              lineText,
+              x,
+              y + (idx - (lines.length - 1) / 2) * 13
+            );
+          });
         });
+
       }
       drawRadar();
       let resizeTimer;
